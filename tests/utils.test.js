@@ -3,9 +3,12 @@ const chai = require("chai");
 const utils = require("../utils");
 const expect = chai.expect;
 
+// ========================================================
 // NOTE: https://mochajs.org/#arrow-functions
 // Passing arrow functions (“lambdas”) to Mocha is discouraged.
 // Lambdas lexically bind this and cannot access the Mocha context.
+// ========================================================
+
 it("should say hello", function() {
   const hello = utils.sayHello();
   expect(hello).to.be.a("string");
@@ -13,17 +16,21 @@ it("should say hello", function() {
   expect(hello).with.lengthOf(5);
 });
 
+// ========================================================
+// Level 1 Challenges
+// ========================================================
+
 it("should return the area of a 5 by 6 rectangle");
 
 it("should return the are of a circle of radius 5");
 
 // ========================================================
-// Challenges
+// Level 2 Challenges
 // ========================================================
-
 // NOTE: The following unimplemented test cases are examples
 // of "Pending Tests" in Chai. Someone should write these
 // tests eventually.
+// ========================================================
 
 it("Should create a new (object) Item with name and price");
 
