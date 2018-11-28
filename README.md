@@ -1,153 +1,104 @@
-# TDD Quick Start
+# 🧪 tdd-bdd-challenge
 
-This project contains some simple tests that are run by Mocha and Chai. The concepts here cover the idea of TDD.
+BEW 1.2 Day 9 challenges!
 
-## Step by Step
+## TDD Practice (70 Minutes)
 
-### Step 1: Install Dependencies
+Use the [in-class-tdd](in-class-tdd/README.md) project in this repo as a starting point. I recommend [forking this starter repo directly](https://github.com/droxey/tdd-bdd-challenge) to best keep track of your changes.
 
-To run tests, first install `mocha` and `chai` as `devDependencies`.
+Feel free to work with a partner.
 
-```bash
-$ npm install --save-dev mocha
-$ npm install --save-dev chai
+The goal is to make each test pass!
+
+### Level 1 Challenges
+
+#### Overview
+
+Imagine you just got a job with a MeasureIt.com. They want to create an app that measures everything. You'll need some methods that can return measurements.
+
+* Area should return the area of a rectangle.
+* Perimeter should return the perimeter of a rectangle.
+* Should return the area of a circle with radius.
+
+You'll start by writing pending tests for these methods. Then write functions that make the tests pass.
+
+### Level 2 Challenges
+
+#### Overview
+
+The product is a shopping cart. The cart will track products added to a cart. The cart needs to add new products, remove products, and provide the total count, and price of all products in the cart.
+
+Start with these test cases and write code to answer test case. Note: there is no code yet that does any of the things the tests ask for.
+
+From a TDD perspective, you start with failing tests and build the  application to meet the requirements of the tests.
+
+In terms of **BDD**, the test descriptions are written to describe what the product should be capable of doing.
+
+```javascript
+it('Should create a new item with name and price');
+it('Should return an array containing all items in cart');
+it('Should add a new item to the shopping cart');
+it('Should return the number of items in the cart');
+it('Should remove items from cart');
+
+// Stretch challenges
+it('Should update the count of items in the cart');
+it('Should remove an item when its count is 0');
+it('Should return the total cost of all items in the cart');
 ```
 
-### Step 2: Update `scripts` in `package.json`
+Your goal is to write code that meets the above test cases.
 
-The following two scripts run tests on all files in all folders named `*.test.js`. Tests are run from commands in `package.json`.
+To help visualize the how the cart behaves, you can picture the cart
+as a table. Imagine the tables below were drawn up by the design
+team to describe how the cart would work.
 
-Edit the `scripts` section of your project's `package.json` file:
+Imagine your shopping cart is empty:
 
-```json
-"test": "mocha **/*.test.js",
-"test-watch": "nodemon --exec 'npm test'"
-```
+| name | price | qty | cost |
+|------|-------|-----|------|
+|      |       |     |      |
 
-### Step 3: Run Tests
+Imagine you add an apple to the cart
 
-With the above added to `package.json`, you can run tests by executing the following command:
+| name | price | qty | cost |
+|------|-------|-----|------|
+| apple| 0.99  |  1  | 0.99 |
+| total|       |  1  | 0.99 |
 
-```bash
-$ npm test
-```
+What if you add a banana?
 
-Or, simply monitor those tests with `nodemon` by running:
+| name  | price | qty | cost |
+|-------|-------|-----|------|
+| apple | 0.99  |  1  | 0.99 |
+| banana| 1.29  |  1  | 1.29 |
+| total |       |  2  | 2.28 |
 
-```bash
-$ npm run test-watch
-```
+What if you add another apple?
 
-## Additional Implementation Details
+| name  | price | qty | cost |
+|-------|-------|-----|------|
+| apple | 0.99  |  2  | 1.98 |
+| banana| 1.29  |  1  | 1.29 |
+| total |       |  3  | 3.27 |
 
-### Async Operations
+#### Hints
 
-Testing async operations is a little more difficult than testing synchronous operations. Async actions requires our tests to wait for a reply.
+ While you won't be making a functional shopping cart, you will have to create some of the system. Think about how shopping carts work. Ask yourself how the cart will keep track of items and what exactly an item is.
 
-NOTE: If an operation takes longer than 2 secs Mocha will time out and mark the test as failing!
+"Items" in the cart will be JavaScript Objects, and the "cart" system will hold them in an array.
 
-You can extend the time for tests by adding the timeout flag when calling mocha. Add the following flag to your `test` script in `package.json`: `--timeout 5000`
+* Set up your tests run your code. All tests should be pending.
+* Solve each test case one at a time by following the TDD pattern.
+  * Write functions that handle the test case. The functions should return a value the test case can evaluate.
+  * Run your tests. If the first case passes move on to the next, if not revise your code and test again.
+* Solving one test case may break a previously working case. In this case refactor and test again.
 
-#### `done()`
+## After Class
 
-When testing async operations your test blocks will take `done` as a parameter. Those functions **must call `done()`** when they complete whatever it is they are doing.
+Practice TDD by implementing test cases for your [Custom API Project](../Projects/02-Custom-API-Project.md).
 
-##### Example
+## Additional Resources
 
-```js
-it('Should return an array of posts', (done) => {
-  Post.find({}).then((posts) => {     // Searches for all Posts
-    expect(posts).to.be.an('array');  // Expects posts to be an array
-    done();                           // On success, call done with no arguments.
-  }).catch((err) => {
-    done(err);                        // On failure, call done, and provide the error as an argument.
-  });
-});
-```
-
-Calling `done()` tells mocha to move on to the next test. Calling `done(error)` with an error tells mocha the error failed and prints the error.
-
-### Promises and Mocha
-
-Mocha understands and works with Promises. When testing async code, you can **return a promise, omitting the `done` parameter and `catch()` call** at the end.
-
-#### Example
-
-```js
-it("Should return an array of posts", () => {
-  return Post.find({}).then(posts => {
-    // Searches for all Posts
-    expect(posts).to.be.an("array"); // Expects posts to be an array
-  });
-});
-```
-
-### `describe()`
-
-You can group tests with the `describe` block. The `describe` block runs tests as a group, and on output, provides a report on the group.
-
-#### Example
-
-```js
-describe('testing posts', () => {
-  it('should fetch an array of posts');
-  it('should add a post');
-  it('should remove a post');
-});
-
-describe('testing users', () => {
-  it('should fetch an array of users');
-  it('should add a user');
-  it('should remove a user');
-});
-```
-
-#### Output
-
-```bash
-testing posts
-  - should fetch an array of posts
-  - should add a post
-  - should remove a post
-
-testing users
-  - should fetch an array of users
-  - should add a user
-  - should remove a user
-```
-
-This will be effected by the reporter! `nyancat`, sadly, does
-not make much use of `describe`. Additionally, describe blocks can be nested for further semantic separation.
-
-### Hooks: `before`, `beforeEach()`, `after()`, `afterEach()`
-
-Mocha provides [methods that run before and after tests](https://mochajs.org/#hooks).
-
-These are:
-
-- `before()` - Runs before **all** tests.
-- `beforeEach()` - Runs before **each** test.
-- `after()` - Runs after **all tests**.
-- `afterEach()` - Runs after **each** test.
-
-One might use these functions to accomplish:
-
-- Creating records used in tests.
-- Removing records created for tests.
-
-#### Example
-
-```js
-let testPost;
-
-before(() => {
-  testPost = new Post({ name: "TESTING" });
-  return testPost.save();
-});
-
-after(() => {
-  return testPost.remove();
-});
-```
-
-The code above creates a new `Post` object **before** the tests run. The new `Post` object is subsequently removed after tests are complete.
+* [Step by Step Setup](in-class-tdd/README.md) - Quick documentation on how to get started with TDD and BDD in Node.
+* [Chai.js Cheatsheet](https://devhints.io/chai) - Awesome cheat sheet for implementing TDD and BDD!
