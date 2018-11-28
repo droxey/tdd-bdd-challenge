@@ -4,11 +4,9 @@ BEW 1.2 Day 9 challenges!
 
 ## TDD Practice (70 Minutes)
 
-Use the [in-class-tdd](in-class-tdd/README.md) project in this repo as a starting point. I recommend [forking this starter repo directly](https://github.com/droxey/tdd-bdd-challenge) to best keep track of your changes.
+Use the [in-class-tdd](in-class-tdd/README.md) project in this repo as a starting point. I recommend [forking this starter repo directly](https://github.com/droxey/tdd-bdd-challenge) to best keep track of your changes. Feel free to work with a partner.
 
-Feel free to work with a partner.
-
-The goal is to make each test pass!
+**The goal is to make each test pass before the end of the class period!**
 
 ### Level 1 Challenges
 
