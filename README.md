@@ -1,6 +1,8 @@
 # 🧪 tdd-bdd-challenge
 
-BEW 1.2 Day 9 challenges!
+BEW 1.2 Day 9 challenges! 
+
+**Fork this repo to begin.**
 
 ## TDD Practice (70 Minutes)
 
@@ -39,7 +41,7 @@ it('Should add a new item to the shopping cart');
 it('Should return the number of items in the cart');
 it('Should remove items from cart');
 
-// Stretch challenges
+// Stretch Challenges
 it('Should update the count of items in the cart');
 it('Should remove an item when its count is 0');
 it('Should return the total cost of all items in the cart');
