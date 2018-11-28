@@ -94,10 +94,6 @@ What if you add another apple?
   * Run your tests. If the first case passes move on to the next, if not revise your code and test again.
 * Solving one test case may break a previously working case. In this case refactor and test again.
 
-## After Class
-
-Practice TDD by implementing test cases for your [Custom API Project](../Projects/02-Custom-API-Project.md).
-
 ## Additional Resources
 
 * [Step by Step Setup](in-class-tdd/README.md) - Quick documentation on how to get started with TDD and BDD in Node.
