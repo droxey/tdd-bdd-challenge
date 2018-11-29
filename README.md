@@ -96,5 +96,5 @@ What if you add another apple?
 
 ## Additional Resources
 
-* [Step by Step Setup](in-class-tdd/README.md) - Quick documentation on how to get started with TDD and BDD in Node.
+* [Step by Step Setup](https://github.com/Product-College-Courses/BEW-1.2-Authentication-and-Associations/blob/master/09-TDD/in-class-tdd/README.md) - Quick documentation on how to get started with TDD and BDD in Node.
 * [Chai.js Cheatsheet](https://devhints.io/chai) - Awesome cheat sheet for implementing TDD and BDD!
